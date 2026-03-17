@@ -1,0 +1,483 @@
+/**
+ * ============================================================================
+ * TutoPage.css — Styles de la page tutoriel
+ * ============================================================================
+ * 
+ * Hérite des variables CSS de App.css (dark/light mode).
+ * Même police Outfit que la landing page.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+/* ========================================================================== */
+/* BASE                                                                       */
+/* ========================================================================== */
+
+.tuto {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  min-height: 100vh;
+  background: var(--bg-app);
+  color: var(--text-primary);
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Animations d'entrée */
+.anim-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--delay, 0s);
+}
+
+.tuto--visible .anim-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========================================================================== */
+/* NAVBAR                                                                     */
+/* ========================================================================== */
+
+.tuto-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0 24px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: color-mix(in srgb, var(--bg-app) 80%, transparent);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.tuto-nav-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.tuto-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid var(--border-default);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tuto-back-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-subtle);
+}
+
+.tuto-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tuto-theme-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border-default);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tuto-theme-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.tuto-start-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tuto-start-btn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+/* ========================================================================== */
+/* HERO                                                                       */
+/* ========================================================================== */
+
+.tuto-hero {
+  padding: 100px 24px 48px;
+  text-align: center;
+}
+
+.tuto-hero-inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.tuto-label {
+  display: inline-block;
+  padding: 5px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-subtle);
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+  border-radius: 100px;
+  margin-bottom: 20px;
+  letter-spacing: 0.03em;
+}
+
+.tuto-title {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+
+.tuto-title-accent {
+  background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tuto-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ========================================================================== */
+/* ÉTAPES                                                                     */
+/* ========================================================================== */
+
+.tuto-steps {
+  padding: 20px 24px 60px;
+}
+
+.tuto-steps-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.tuto-step {
+  display: flex;
+  gap: 20px;
+  padding: 28px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: 16px;
+  transition: all 0.3s;
+}
+
+.tuto-step:hover {
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+  box-shadow: 0 4px 20px color-mix(in srgb, var(--accent) 6%, transparent);
+}
+
+/* Colonne gauche : numéro + icône */
+.tuto-step-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  width: 64px;
+}
+
+.tuto-step-number {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--accent);
+  opacity: 0.2;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.tuto-step-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: var(--accent-subtle);
+  color: var(--accent);
+}
+
+/* Colonne droite : contenu */
+.tuto-step-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.tuto-step-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+.tuto-step-content p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.tuto-step-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Encadré astuce */
+.tuto-step-tip {
+  margin-top: 14px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--accent-warm) 8%, transparent);
+  border-left: 3px solid var(--accent-warm);
+  border-radius: 0 10px 10px 0;
+}
+
+.tuto-tip-label {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent-warm);
+  margin-bottom: 4px;
+}
+
+.tuto-step-tip p {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ========================================================================== */
+/* FAQ                                                                        */
+/* ========================================================================== */
+
+.tuto-faq {
+  padding: 48px 24px;
+  background: var(--bg-elevated);
+  border-top: 1px solid var(--border-default);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.tuto-faq-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.tuto-faq-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+}
+
+.tuto-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.faq-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.faq-item--open {
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 20px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  gap: 12px;
+  transition: color 0.2s;
+}
+
+.faq-question:hover {
+  color: var(--accent);
+}
+
+.faq-chevron {
+  flex-shrink: 0;
+  color: var(--text-tertiary);
+  transition: transform 0.25s;
+}
+
+.faq-chevron--open {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  padding: 0 20px 16px;
+}
+
+.faq-answer p {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* ========================================================================== */
+/* CTA                                                                        */
+/* ========================================================================== */
+
+.tuto-cta {
+  padding: 72px 24px;
+  text-align: center;
+}
+
+.tuto-cta-inner {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.tuto-cta h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+
+.tuto-cta p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+}
+
+.tuto-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 36px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.tuto-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+/* ========================================================================== */
+/* FOOTER                                                                     */
+/* ========================================================================== */
+
+.tuto-footer {
+  text-align: center;
+  padding: 24px;
+  font-size: 0.78rem;
+  color: var(--text-tertiary);
+  border-top: 1px solid var(--border-default);
+}
+
+.tuto-footer strong {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+/* ========================================================================== */
+/* RESPONSIVE                                                                 */
+/* ========================================================================== */
+
+@media (max-width: 640px) {
+  .tuto-step {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .tuto-step-header {
+    flex-direction: row;
+    width: auto;
+  }
+
+  .tuto-step-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+  }
+
+  .tuto-step-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .tuto-back-btn span {
+    display: none;
+  }
+}
+
+/* ========================================================================== */
+/* MOUVEMENT RÉDUIT                                                           */
+/* ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

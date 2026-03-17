@@ -11,11 +11,11 @@
  * - Support dark/light mode
  * - Animations CSS staggerées au chargement
  * 
- * @author SIYANDJIDEV EXPERT
+ * @author SIYANDJI DEV EXPERT
  * @version 1.0.0
  */
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './LandingPage.css';
 
 // ============================================================================
@@ -156,7 +156,7 @@ const STEPS = [
 // COMPOSANT PRINCIPAL
 // ============================================================================
 
-function LandingPage({ onStart, isDark, onToggleTheme }) {
+function LandingPage({ onStart, onTuto, isDark, onToggleTheme }) {
   const [isVisible, setIsVisible] = useState(false);
 
   /** Déclencher les animations d'entrée après le montage */
@@ -184,6 +184,10 @@ function LandingPage({ onStart, isDark, onToggleTheme }) {
               aria-label={isDark ? 'Mode clair' : 'Mode sombre'}
             >
               {isDark ? <LandingIcons.Sun /> : <LandingIcons.Moon />}
+            </button>
+            <button onClick={onTuto} className="landing-theme-btn"
+              style={{ width: 'auto', padding: '0 14px', fontSize: '0.82rem', fontWeight: 500 }}>
+              Tutoriel
             </button>
             <button onClick={onStart} className="landing-nav-cta">
               Commencer
@@ -327,7 +331,7 @@ function LandingPage({ onStart, isDark, onToggleTheme }) {
       {/* FOOTER                                                       */}
       {/* ============================================================ */}
       <footer className="landing-footer">
-        <p>ProprioFile © 2026 — Conçu par <strong>SIYANDJIDEV EXPERT</strong></p>
+        <p>ProprioFile © 2026 — Conçu par <strong>SIYANDJI DEV EXPERT</strong></p>
       </footer>
     </div>
   );
