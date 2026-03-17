@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- ================================================================== -->
+  <!-- ENCODAGE & VIEWPORT                                                -->
+  <!-- ================================================================== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ================================================================== -->
+  <!-- SEO : TITRE & DESCRIPTION                                          -->
+  <!-- ================================================================== -->
+  <!-- 
+    Le titre est la chose la plus importante pour le SEO.
+    Format recommandé : Nom - Description courte (max 60 caractères)
+  -->
+  <title>PropioFile — La protection intelligente de vos PDF</title>
+
+  <!--
+    La meta description apparaît dans les résultats Google.
+    Elle doit donner envie de cliquer. Max 155 caractères.
+  -->
+  <meta name="description" content="Protégez vos documents PDF avec un filigrane personnalisé. Gratuit, sans inscription, 100% côté client. Vos fichiers ne quittent jamais votre appareil." />
+
+  <!--
+    Les mots-clés ne sont plus utilisés par Google,
+    mais certains moteurs secondaires les lisent encore.
+  -->
+  <meta name="keywords" content="filigrane PDF, watermark PDF, protéger PDF, filigrane en ligne, protection document, PropioFile, watermark gratuit, sécuriser PDF" />
+
+  <!-- Auteur du site -->
+  <meta name="author" content="SIYANDJIDEV EXPERT" />
+
+  <!-- ================================================================== -->
+  <!-- SEO : URL CANONIQUE                                                -->
+  <!-- ================================================================== -->
+  <!--
+    L'URL canonique indique à Google quelle est la "vraie" URL de la page.
+    Ça évite le contenu dupliqué si l'app est accessible via plusieurs URLs.
+    ⚠️  Remplace par ton vrai domaine en production !
+  -->
+  <link rel="canonical" href="https://propiofile.com/" />
+
+  <!-- ================================================================== -->
+  <!-- SEO : OPEN GRAPH (Facebook, LinkedIn, WhatsApp)                    -->
+  <!-- ================================================================== -->
+  <!--
+    Quand quelqu'un partage ton lien sur Facebook/LinkedIn/WhatsApp,
+    ces balises contrôlent l'aperçu qui s'affiche.
+  -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="PropioFile — La protection intelligente de vos PDF" />
+  <meta property="og:description" content="Appliquez un filigrane personnalisé sur vos PDFs. Gratuit, sans inscription, 100% côté client." />
+  <meta property="og:url" content="https://propiofile.com/" />
+  <meta property="og:site_name" content="PropioFile" />
+  <meta property="og:locale" content="fr_FR" />
+  <!--
+    Image d'aperçu pour les réseaux sociaux.
+    Taille recommandée : 1200x630px.
+    ⚠️  Crée ce fichier et place-le dans public/
+  -->
+  <meta property="og:image" content="https://propiofile.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="PropioFile - Protection de PDF par filigrane" />
+
+  <!-- ================================================================== -->
+  <!-- SEO : TWITTER CARDS                                                -->
+  <!-- ================================================================== -->
+  <!--
+    Même principe qu'Open Graph mais pour Twitter/X.
+    "summary_large_image" affiche une grande image d'aperçu.
+  -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="PropioFile — La protection intelligente de vos PDF" />
+  <meta name="twitter:description" content="Filigrane PDF gratuit, sans inscription. 100% côté client." />
+  <meta name="twitter:image" content="https://propiofile.com/og-image.png" />
+
+  <!-- ================================================================== -->
+  <!-- SEO : STRUCTURED DATA (JSON-LD)                                    -->
+  <!-- ================================================================== -->
+  <!--
+    Les données structurées aident Google à comprendre ce qu'est ton site.
+    Google peut afficher des "rich snippets" dans les résultats de recherche
+    (étoiles, description enrichie, logo, etc.)
+    
+    Type "WebApplication" = Google comprend que c'est une app en ligne.
+  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PropioFile",
+    "url": "https://propiofile.com",
+    "description": "Application gratuite de protection de documents PDF par filigrane personnalisé. Fonctionne entièrement côté client.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "XAF"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": "SIYANDJIDEV EXPERT",
+      "url": "https://propiofile.com"
+    },
+    "screenshot": "https://propiofile.com/og-image.png",
+    "featureList": [
+      "Filigrane PDF personnalisé",
+      "Preview en temps réel",
+      "Support PNG, JPG, WEBP, SVG",
+      "Export PDF ou ZIP",
+      "Dark mode",
+      "100% côté client"
+    ],
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "softwareVersion": "2.1.0",
+    "inLanguage": "fr"
+  }
+  </script>
+
+  <!-- ================================================================== -->
+  <!-- SEO : FAVICON & ICÔNES                                            -->
+  <!-- ================================================================== -->
+  <!--
+    Le favicon apparaît dans l'onglet du navigateur et dans les résultats Google.
+    ⚠️  Crée ces fichiers et place-les dans public/
+    Utilise https://realfavicongenerator.net pour les générer.
+  -->
+  <link rel="icon" type="image/svg+xml" href="/public/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/public/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/public/favicon-96x96.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/public/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/public/web-app-manifest-512x512.png"/>
+  <link rel="icon" type="image/png" sizes="192x192" href="/public/web-app-manifest-192x192.png"/>
+
+  <!-- ================================================================== -->
+  <!-- PWA : MANIFEST                                                     -->
+  <!-- ================================================================== -->
+  <!--
+    Le manifest permet à l'app d'être "installable" sur mobile.
+    Google utilise aussi ces infos pour le référencement.
+  -->
+  <link rel="manifest" href="/public/manifest.json" />
+
+  <!-- ================================================================== -->
+  <!-- SEO : THÈME & COULEURS                                            -->
+  <!-- ================================================================== -->
+  <meta name="theme-color" content="#6d5cff" />
+  <meta name="msapplication-TileColor" content="#6d5cff" />
+
+  <!-- ================================================================== -->
+  <!-- PERFORMANCE : PRECONNECT                                           -->
+  <!-- ================================================================== -->
+  <!--
+    Préconnexion aux serveurs de polices pour charger plus vite.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- ================================================================== -->
+  <!-- SEO : ROBOTS                                                       -->
+  <!-- ================================================================== -->
+  <!--
+    Indique aux moteurs de recherche d'indexer la page
+    et de suivre tous les liens.
+  -->
+  <meta name="robots" content="index, follow" />
+</head>
+<body>
+  <!--
+    NOSCRIPT : Message affiché si JavaScript est désactivé.
+    Important pour le SEO car Google voit ce contenu même
+    si le JS ne s'exécute pas.
+  -->
+  <noscript>
+    <div style="padding:40px;text-align:center;font-family:sans-serif">
+      <h1>PropioFile — La protection intelligente de vos PDF</h1>
+      <p>
+        PropioFile vous permet de protéger vos documents PDF avec un filigrane personnalisé.
+        Gratuit, sans inscription, et 100% côté client.
+      </p>
+      <p>Veuillez activer JavaScript pour utiliser l'application.</p>
+    </div>
+  </noscript>
+
+  <!-- Point de montage React -->
+  <div id="root"></div>
+
+  <!-- Script principal (Vite injecte automatiquement le bon chemin) -->
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>

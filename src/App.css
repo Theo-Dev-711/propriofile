@@ -1,0 +1,843 @@
+/**
+ * ============================================================================
+ * ProprioFile- Feuille de styles principale
+ * ============================================================================
+ * 
+ * Organisation :
+ * 1. Variables CSS (tokens de design)
+ * 2. Reset & Base
+ * 3. Layout
+ * 4. Header
+ * 5. Cards
+ * 6. Upload zones
+ * 7. File list
+ * 8. Sliders
+ * 9. Preview
+ * 10. Progress bar
+ * 11. Buttons
+ * 12. Toast notifications
+ * 13. Footer
+ * 14. Animations
+ * 15. Responsive
+ * 16. Accessibility
+ * 
+ * CONVENTIONS :
+ * - BEM simplifié : .block__element--modifier
+ * - Variables CSS pour toutes les couleurs (dark/light mode)
+ * - Mobile-first : styles de base = mobile, @media = desktop
+ * - Transitions CSS pour toutes les interactions
+ */
+
+/* ========================================================================== */
+/* 1. VARIABLES CSS - TOKENS DE DESIGN                                        */
+/* ========================================================================== */
+
+/**
+ * Mode clair (défaut).
+ * Palette inspirée d'un style professionnel et épuré.
+ */
+:root,
+[data-theme="light"] {
+  /* --- Surfaces --- */
+  --bg-app: #f4f3f0;
+  --bg-card: #ffffff;
+  --bg-elevated: #fafaf8;
+  --bg-input: #f7f6f3;
+  --bg-hover: rgba(0, 0, 0, 0.03);
+  
+  /* --- Texte --- */
+  --text-primary: #1a1a1a;
+  --text-secondary: #5c5c5c;
+  --text-tertiary: #8a8a8a;
+  --text-inverse: #ffffff;
+  
+  /* --- Bordures --- */
+  --border-default: rgba(0, 0, 0, 0.08);
+  --border-strong: rgba(0, 0, 0, 0.15);
+  --border-focus: var(--accent);
+  
+  /* --- Accents --- */
+  --accent: #6d5cff;           /* Violet principal */
+  --accent-hover: #5a47e6;
+  --accent-subtle: rgba(109, 92, 255, 0.08);
+  --accent-alt: #0ea5e9;       /* Bleu info */
+  --accent-warm: #f59e0b;      /* Ambre */
+  --accent-success: #22c55e;
+  --accent-danger: #ef4444;
+  
+  /* --- Ombres --- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08);
+  
+  /* --- Divers --- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/**
+ * Mode sombre.
+ * Surfaces sombres, texte clair, accents plus saturés.
+ */
+[data-theme="dark"] {
+  --bg-app: #0c0c14;
+  --bg-card: #16161f;
+  --bg-elevated: #1c1c28;
+  --bg-input: #1e1e2a;
+  --bg-hover: rgba(255, 255, 255, 0.04);
+  
+  --text-primary: #e8e6e0;
+  --text-secondary: #9e9c94;
+  --text-tertiary: #6b6961;
+  --text-inverse: #0c0c14;
+  
+  --border-default: rgba(255, 255, 255, 0.06);
+  --border-strong: rgba(255, 255, 255, 0.12);
+  
+  --accent: #8b7dff;
+  --accent-hover: #a094ff;
+  --accent-subtle: rgba(139, 125, 255, 0.1);
+  --accent-alt: #38bdf8;
+  --accent-warm: #fbbf24;
+  
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* ========================================================================== */
+/* 2. RESET & BASE                                                            */
+/* ========================================================================== */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'DM Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-app);
+  color: var(--text-primary);
+  line-height: 1.5;
+  transition: background var(--transition), color var(--transition);
+}
+
+/* ========================================================================== */
+/* 3. LAYOUT                                                                  */
+/* ========================================================================== */
+
+/** Conteneur principal de l'application */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/** Zone de contenu principal */
+.main {
+  flex: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+  width: 100%;
+}
+
+/**
+ * Grille à deux colonnes (desktop).
+ * Mobile : une seule colonne empilée.
+ */
+.grid-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.col-left,
+.col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ========================================================================== */
+/* 4. HEADER                                                                  */
+/* ========================================================================== */
+
+.header {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-default);
+  padding: 16px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: background var(--transition);
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--accent);
+}
+
+.header-brand h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+/** Badge version */
+.badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: 100px;
+  background: var(--accent-subtle);
+  color: var(--accent);
+}
+
+.header-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  max-width: 1100px;
+  margin: 4px auto 0;
+}
+
+/* ========================================================================== */
+/* 5. CARDS                                                                   */
+/* ========================================================================== */
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: background var(--transition), border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.card-title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+}
+
+.card-title-group h2 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/** Compteur de fichiers (pastille numérique) */
+.counter {
+  font-size: 0.7rem;
+  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  background: var(--accent);
+  color: var(--text-inverse);
+}
+
+.card-body {
+  padding: 16px 18px;
+}
+
+/* ========================================================================== */
+/* 6. UPLOAD ZONES                                                            */
+/* ========================================================================== */
+
+/**
+ * Zone de drop pour les fichiers.
+ * Bordure dashed, feedback visuel au hover et au drag-over.
+ */
+.upload-zone,
+.drop-zone {
+  border: 2px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition);
+  background: var(--bg-input);
+}
+
+.upload-zone:hover,
+.drop-zone:hover {
+  border-color: var(--accent);
+  background: var(--accent-subtle);
+}
+
+/** État actif pendant le drag-over */
+.drop-zone--active {
+  border-color: var(--accent);
+  background: var(--accent-subtle);
+  transform: scale(1.01);
+}
+
+.upload-zone--compact {
+  padding: 20px;
+}
+
+.upload-label,
+.drop-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.upload-text {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.upload-hint {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+/* ========================================================================== */
+/* 7. LOGO PREVIEW & FILE LIST                                                */
+/* ========================================================================== */
+
+.logo-preview-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-preview-img {
+  max-width: 100%;
+  max-height: 120px;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  background: var(--bg-input);
+  padding: 8px;
+}
+
+.logo-preview-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: var(--accent-success);
+  background: rgba(34, 197, 94, 0.08);
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+
+.logo-preview-info span {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/** Liste des fichiers PDF */
+.file-list {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-input);
+  font-size: 0.8rem;
+  transition: background var(--transition);
+}
+
+.file-item:hover {
+  background: var(--bg-hover);
+}
+
+.file-item svg {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.file-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-primary);
+}
+
+.file-size {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+/* ========================================================================== */
+/* 8. SLIDERS                                                                 */
+/* ========================================================================== */
+
+.slider-control {
+  margin-bottom: 16px;
+}
+
+.slider-control:last-child {
+  margin-bottom: 0;
+}
+
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.slider-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.slider-value {
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/**
+ * Slider personnalisé avec remplissage coloré.
+ * Utilise une variable CSS --slider-fill pour la position.
+ */
+.slider-input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  background: linear-gradient(
+    to right,
+    var(--slider-accent, var(--accent)) 0%,
+    var(--slider-accent, var(--accent)) var(--slider-fill, 50%),
+    var(--bg-input) var(--slider-fill, 50%),
+    var(--bg-input) 100%
+  );
+  transition: opacity var(--transition);
+}
+
+/* Thumb (poignée) du slider - Webkit */
+.slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 2px solid var(--slider-accent, var(--accent));
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.slider-input::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: var(--shadow-md);
+}
+
+/* Thumb (poignée) du slider - Firefox */
+.slider-input::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 2px solid var(--slider-accent, var(--accent));
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+}
+
+/* ========================================================================== */
+/* 9. PREVIEW                                                                 */
+/* ========================================================================== */
+
+.preview-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.preview-hint {
+  font-size: 0.78rem;
+  color: var(--text-tertiary);
+  font-style: italic;
+}
+
+/* ========================================================================== */
+/* 10. PROGRESS BAR                                                           */
+/* ========================================================================== */
+
+.progress-section {
+  margin-top: 20px;
+  padding: 16px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+}
+
+.progress-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.progress-count {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-tertiary);
+  font-size: 0.78rem;
+}
+
+.progress-track {
+  width: 100%;
+  height: 6px;
+  background: var(--bg-input);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-alt));
+  border-radius: 3px;
+  transition: width 300ms ease;
+}
+
+/* ========================================================================== */
+/* 11. BUTTONS                                                                */
+/* ========================================================================== */
+
+/** Bouton d'action principal (Générer ZIP) */
+.btn-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 14px 28px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-inverse);
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-action:hover:not(:disabled) {
+  background: var(--accent-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.btn-action:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-action:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/** Bouton reset (petite taille, dans les headers de carte) */
+.btn-reset {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  background: transparent;
+  border: 1px solid var(--border-default);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-reset:hover {
+  color: var(--accent-danger);
+  border-color: var(--accent-danger);
+  background: rgba(239, 68, 68, 0.06);
+}
+
+/** Bouton icône (suppression de fichier) */
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  cursor: pointer;
+  color: var(--text-tertiary);
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+
+.btn-icon--danger:hover {
+  color: var(--accent-danger);
+  background: rgba(239, 68, 68, 0.08);
+}
+
+/** Toggle dark/light mode */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-subtle);
+}
+
+/* ========================================================================== */
+/* 12. TOAST NOTIFICATIONS                                                    */
+/* ========================================================================== */
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  animation: toast-in 300ms ease forwards;
+  max-width: 90vw;
+}
+
+.toast--success {
+  background: #065f46;
+  color: #d1fae5;
+}
+
+.toast--error {
+  background: #7f1d1d;
+  color: #fecaca;
+}
+
+.toast--info {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+}
+
+.toast-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: inherit;
+  opacity: 0.6;
+  cursor: pointer;
+  padding: 2px;
+  margin-left: 4px;
+}
+
+.toast-close:hover {
+  opacity: 1;
+}
+
+/* ========================================================================== */
+/* 13. FOOTER                                                                 */
+/* ========================================================================== */
+
+.footer {
+  text-align: center;
+  padding: 16px;
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  border-top: 1px solid var(--border-default);
+}
+
+/* ========================================================================== */
+/* 14. SECTIONS D'ACTION                                                      */
+/* ========================================================================== */
+
+.action-section {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.action-hint {
+  margin-top: 10px;
+  font-size: 0.78rem;
+  color: var(--text-tertiary);
+}
+
+/* ========================================================================== */
+/* 15. ANIMATIONS                                                             */
+/* ========================================================================== */
+
+/** Animation d'entrée du toast */
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/** Animation de rotation (spinner) */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ========================================================================== */
+/* 16. RESPONSIVE                                                             */
+/* ========================================================================== */
+
+/**
+ * Breakpoint tablette : passage en 2 colonnes.
+ * La colonne gauche (logo + PDFs) et droite (config + preview)
+ * se placent côte à côte.
+ */
+@media (min-width: 768px) {
+  .main {
+    padding: 28px 24px 48px;
+  }
+
+  .grid-layout {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+/**
+ * Breakpoint desktop large : espacement supplémentaire.
+ */
+@media (min-width: 1024px) {
+  .main {
+    padding: 32px 32px 56px;
+  }
+
+  .grid-layout {
+    gap: 24px;
+  }
+}
+
+/* ========================================================================== */
+/* 17. ACCESSIBILITÉ                                                          */
+/* ========================================================================== */
+
+/** Focus visible pour la navigation clavier */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/** Respect de la préférence utilisateur "mouvement réduit" */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/** Bouton retour vers la landing */
+.btn-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-back:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-subtle);
+}

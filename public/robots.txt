@@ -1,0 +1,23 @@
+# ============================================================================
+# robots.txt — PropioFile
+# ============================================================================
+#
+# Ce fichier indique aux robots des moteurs de recherche (Google, Bing, etc.)
+# quelles pages ils peuvent crawler et indexer.
+#
+# EMPLACEMENT : public/robots.txt
+# URL finale :  https://propiofile.com/robots.txt
+#
+# RÈGLES :
+# - User-agent: * → s'applique à TOUS les robots
+# - Allow: /     → autorise le crawl de tout le site
+# - Sitemap:     → indique où trouver le plan du site
+#
+# ⚠️  Remplace propiofile.com par ton vrai domaine en production !
+# ============================================================================
+
+User-agent: *
+Allow: /
+
+# Plan du site pour faciliter l'indexation
+Sitemap: https://propiofile.com/sitemap.xml
