@@ -15,7 +15,7 @@
  * 6. Télécharger les fichiers protégés
  * 7. FAQ
  * 
- * @author SIYANDJIDEV EXPERT
+ * @author SIYANDJI DEV EXPERT
  * @version 1.0.0
  */
 
