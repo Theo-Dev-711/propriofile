@@ -137,6 +137,43 @@
   transform: translateY(-1px);
 }
 
+/* --- ADAPTATION RESPONSIVE (ISDEV EXPERT) --- */
+
+@media (max-width: 640px) {
+  /* Réduction du padding latéral pour gagner de l'espace */
+  .landing-nav {
+    padding: 0 12px;
+  }
+
+  /* Masquer le texte du logo pour ne garder que l'icône sur mobile */
+  .landing-logo-text {
+    display: none;
+  }
+
+  /* Espacement réduit entre les boutons d'action */
+  .landing-nav-actions {
+    gap: 8px;
+  }
+
+  /* Cacher le bouton Tutoriel sur mobile pour éviter l'encombrement */
+  /* Note : Ajoutez cette classe sur le bouton Tutoriel dans votre JSX */
+  .nav-btn-desktop {
+    display: none;
+  }
+
+  /* Ajuster la taille du bouton CTA pour mobile */
+  .landing-nav-cta {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Optionnel : Pour les écrans ultra-petits (< 350px) */
+@media (max-width: 350px) {
+  .landing-nav-cta span {
+    display: none; /* Ne garde que l'icône de la flèche */
+  }
+}
 /* ========================================================================== */
 /* HERO SECTION                                                               */
 /* ========================================================================== */

@@ -171,7 +171,7 @@ function LandingPage({ onStart, onTuto, isDark, onToggleTheme }) {
       {/* ============================================================ */}
       {/* NAVBAR                                                       */}
       {/* ============================================================ */}
-      <nav className="landing-nav">
+      <nav className="landing-nav mx-auto">
         <div className="landing-nav-inner">
           <div className="landing-logo">
             <LandingIcons.Shield />

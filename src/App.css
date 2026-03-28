@@ -841,3 +841,208 @@ body {
   border-color: var(--accent);
   background: var(--accent-subtle);
 }
+
+/* ========================================================================== */
+/* v3 : ONGLETS MODE FILIGRANE                                                */
+/* ========================================================================== */
+
+.watermark-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: var(--bg-input);
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+}
+
+.watermark-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.watermark-tab:hover {
+  color: var(--text-secondary);
+  background: var(--bg-hover);
+}
+
+.watermark-tab--active {
+  color: var(--accent);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ========================================================================== */
+/* v3 : CONFIG TEXTE                                                          */
+/* ========================================================================== */
+
+.text-config {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.text-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.text-input-label,
+.font-picker-label,
+.color-picker-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.text-input {
+  width: 100%;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  background: var(--bg-input);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  resize: vertical;
+  min-height: 44px;
+  max-height: 120px;
+  transition: border-color var(--transition);
+  line-height: 1.5;
+}
+
+.text-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.text-input::placeholder { color: var(--text-tertiary); }
+
+.text-char-count {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Variables dynamiques */
+.text-variables { display: flex; flex-direction: column; gap: 6px; }
+.text-variables-label { font-size: 0.75rem; font-weight: 500; color: var(--text-tertiary); }
+.text-variables-list { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.text-variable-btn {
+  padding: 4px 10px;
+  font-family: inherit;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--accent-subtle);
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.text-variable-btn:hover {
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  border-color: var(--accent);
+}
+
+/* ========================================================================== */
+/* v3 : SÉLECTEUR DE POLICE                                                   */
+/* ========================================================================== */
+
+.font-picker { display: flex; flex-direction: column; gap: 6px; }
+
+.font-picker-select {
+  width: 100%;
+  padding: 8px 12px;
+  font-family: inherit;
+  font-size: 0.84rem;
+  color: var(--text-primary);
+  background: var(--bg-input);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color var(--transition);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+}
+
+.font-picker-select:focus { outline: none; border-color: var(--accent); }
+.font-picker-select optgroup { font-weight: 600; font-size: 0.8rem; }
+.font-picker-select option { font-weight: 400; }
+
+/* ========================================================================== */
+/* v3 : COLOR PICKER                                                          */
+/* ========================================================================== */
+
+.color-picker { display: flex; flex-direction: column; gap: 8px; }
+.color-picker-row { display: flex; align-items: center; gap: 12px; }
+.color-presets { display: flex; gap: 6px; }
+
+.color-preset {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.color-preset:hover { transform: scale(1.15); }
+
+.color-preset--active {
+  border-color: var(--text-primary);
+  transform: scale(1.15);
+  box-shadow: 0 0 0 2px var(--bg-card), 0 0 0 3px var(--text-primary);
+}
+
+.color-custom { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+
+.color-input {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  background: transparent;
+}
+
+.color-input::-webkit-color-swatch-wrapper { padding: 2px; }
+.color-input::-webkit-color-swatch { border: none; border-radius: 4px; }
+
+.color-hex {
+  font-size: 0.72rem;
+  font-family: monospace;
+  color: var(--text-tertiary);
+  min-width: 60px;
+}
+
+/* ========================================================================== */
+/* v3 : RESPONSIVE AJOUTS                                                     */
+/* ========================================================================== */
+
+@media (max-width: 640px) {
+  .watermark-tab span { display: none; }
+  .color-presets { gap: 4px; }
+  .color-preset { width: 20px; height: 20px; }
+}
